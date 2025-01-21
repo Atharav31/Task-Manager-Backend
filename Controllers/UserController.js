@@ -78,10 +78,32 @@ export const logout = async (req, res) => {
 };
 export const profile = async (req, res) => {
   try {
-    const {} = req.body;
-    res.status(200).json({ message: "Profile", data: req.user });
+    const { username, email } = req.body;
+
+    // Validate input fields
+    if (!username || !email) {
+      return res.status(400).json({
+        message: !username ? "Username is required" : "Email is required",
+      });
+    }
+
+    // Find user by email
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // Update the username
+    user.username = username;
+    await user.save();
+
+    // Send success response
+    res.status(200).json({
+      message: "Profile updated successfully",
+      data: { username: user.username, email: user.email },
+    });
   } catch (error) {
-    console.log(error);
+    console.error("Error updating profile:", error);
     res.status(500).json({ message: "Internal server error" });
   }
 };
