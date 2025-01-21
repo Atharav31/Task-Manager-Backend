@@ -12,10 +12,14 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://task-manger-hazel.vercel.app/",
+];
 app.use(
   cors({
     credentials: true,
-    origin: "http://localhost:3000",
+    origin: allowedOrigins,
   })
 );
 Connection();
