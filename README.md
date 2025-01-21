@@ -23,7 +23,7 @@ The backend of this application is built using **Express.js** and **NestJS**, pr
 
 1. Clone the repository:
    ```bash
-   git clone <backend-repo-url>
+   git clone https://github.com/Atharav31/Task-Manager-Backend.git
    cd backend
    ```
 2. Install dependencies:
