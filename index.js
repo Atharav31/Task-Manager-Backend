@@ -14,7 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 const allowedOrigins = [
   "http://localhost:3000",
-  "https://task-manger-hazel.vercel.app/",
+  "https://task-manger-hazel.vercel.app",
 ];
 app.use(
   cors({
