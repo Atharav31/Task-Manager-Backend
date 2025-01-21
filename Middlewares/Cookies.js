@@ -18,9 +18,11 @@ export const setTokenCookie = (res, payload) => {
 };
 
 export const isAuthenticated = async (req, res, next) => {
-  console.log("Request received for authentication:", req.cookies); // Log the cookies in the request
+  console.log("Request received for authentication:", req.headers); // Log headers in the request
   try {
-    const token = req.cookies.token;
+    // Extract token from Authorization header
+    const token = req.headers.authorization?.split(" ")[1];
+
     if (!token) {
       console.log("No token provided in request."); // Log if no token is provided
       return res
