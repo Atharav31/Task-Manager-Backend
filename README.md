@@ -33,16 +33,14 @@ The backend of this application is built using **Express.js** and **NestJS**, pr
 3. Create a `.env` file in the root directory with the following variables:
    ```env
    PORT=5000
-   MONGO_URI=<your-mongodb-uri>
+   MONGO_URL=<your-mongodb-uri>
    JWT_SECRET=<your-jwt-secret>
-   SMTP_HOST=<your-smtp-host>
-   SMTP_PORT=<your-smtp-port>
-   SMTP_USER=<your-smtp-username>
-   SMTP_PASS=<your-smtp-password>
+   EMAIL:<your-email>
+   PASSWORD:<email-password>
    ```
 4. Start the server:
    ```bash
-   npm start
+   npm run dev
    ```
 
 ### API Endpoints
