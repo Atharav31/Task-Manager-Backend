@@ -9,6 +9,7 @@ export const setTokenCookie = (res, payload) => {
     });
     console.log(token);
     res.cookie("token", token, { httpOnly: true });
+    return token;
   } catch (error) {
     console.log(error);
   }

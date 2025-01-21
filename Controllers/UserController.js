@@ -57,17 +57,25 @@ export const login = async (req, res) => {
       username: user.username,
     };
     const withoutPassword = await User.findById(user._id).select("-password");
-    setTokenCookie(res, payload);
-
+    const token = setTokenCookie(res, payload);
     return res
       .status(200)
-      .json({ message: "Login successful", data: withoutPassword });
+      .json({ message: "Login successful", data: withoutPassword, token });
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "Internal server error" });
   }
 };
-
+export const logout = async (req, res) => {
+  try {
+    console.log(req.cookies);
+    res.clearCookie("token");
+    return res.status(200).json({ message: "Logout successful" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
 export const profile = async (req, res) => {
   try {
     const {} = req.body;
